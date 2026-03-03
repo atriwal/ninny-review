@@ -14,7 +14,7 @@ body {
     color: white;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    cursor: url('https://twemoji.maxcdn.com/v/latest/72x72/1f33b.png'), auto; /* sunflower cursor */
+    cursor: pointer; /* normal hand cursor */
 }
 
 /* STAR SKY BACKGROUND */
@@ -117,7 +117,7 @@ button { padding: 12px 24px; border: none; background: #FFD700; color: black; fo
 <!-- PASSWORD SCREEN -->
 <div id="password-screen">
     <h1>For Ninnu Only 💛</h1>
-    <p>Hint: Where I protected my most valuable belonging</p>
+    <p>Hint: Where we first met</p>
     <input type="password" id="passwordInput" placeholder="Enter password">
     <button onclick="checkPassword()">Unlock</button>
 </div>
@@ -178,13 +178,13 @@ const nextTripDate = new Date("2026-05-15 00:00:00").getTime();
 
 /* PASSWORD */
 function checkPassword(){
-    let pass = document.getElementById("passwordInput").value.toLowerCase();
-    if(pass === "andhra bhawan"){
-        document.getElementById("password-screen").classList.add("hidden");
-        startCountdown();
-    } else {
-        alert("Try again Ninnu 💛");
-    }
+    let pass = document.getElementById("passwordInput").value.trim().toLowerCase();
+if(pass === "diablo"){ // correct password
+    document.getElementById("password-screen").classList.add("hidden");
+    startCountdown();
+} else {
+    alert("Try again Ninnu 💛");
+}
 }
 
 /* COUNTDOWN INTRO */
