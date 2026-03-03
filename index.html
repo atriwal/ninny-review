@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ninnu Desktop ✨</title>
-
+<title>Ninnu Desktop Memories ✨</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
 body {
     margin: 0;
@@ -14,233 +12,155 @@ body {
     color: white;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    cursor: pointer; /* normal pointer for desktop */
+    cursor: pointer;
 }
-
-/* STAR SKY BACKGROUND */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(white 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: moveStars 80s linear infinite;
-    opacity: 0.2;
-    z-index: -2;
-}
-
-/* TWINKLING STARS */
-.star {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes moveStars {
-    from { transform: translateY(0); }
-    to { transform: translateY(-1000px); }
-}
-
-.section { 
-    padding: 100px 80px; /* more spacing for desktop */
-    text-align: center; 
+.section {
+    padding: 100px 80px;
+    text-align: center;
     max-width: 1000px;
     margin: auto;
 }
 h1,h2 { font-family: 'Playfair Display', serif; color: #FFD700; }
-
-/* PASSWORD + COUNTDOWN */
-#password-screen, #countdown-screen { height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; }
-input { padding: 12px; border-radius: 20px; border: none; margin-top: 15px; font-size: 18px; width: 300px; }
-button { padding: 14px 28px; border: none; background: #FFD700; color: black; font-weight: bold; border-radius: 25px; margin-top: 20px; font-size: 18px; }
-.hidden { display: none; }
-
-/* FALLING SUNFLOWERS */
-.sunflower {
-    position: fixed;
-    top: -50px;
-    font-size: 36px; /* bigger on desktop */
-    animation: fall linear infinite;
-    opacity: 0.9;
-    z-index: -1;
+#password-screen, #countdown-screen {
+    height: 100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; text-align:center;
 }
-@keyframes fall {
-    to { transform: translateY(110vh); opacity: 0.7; }
-}
-
-/* STAR SPARKLE */
-.sparkle {
-    position: fixed;
-    font-size: 18px;
-    color: #FFD700;
-    animation: sparkleAnim 1s ease-out forwards;
-}
-@keyframes sparkleAnim {
-    from { opacity: 1; transform: scale(1); }
-    to { opacity: 0; transform: scale(2); }
-}
-
-/* SECRET MESSAGE SWIPE (desktop: click to reveal) */
-#secretMessage {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right:0;
-    background: rgba(255, 215, 0, 0.9);
-    color: black;
-    font-weight: bold;
-    padding: 30px;
-    text-align: center;
-    transform: translateY(100%);
-    transition: transform 0.5s ease;
-    z-index: 10;
-    font-size: 22px;
-    cursor: pointer;
-}
-.showMessage { transform: translateY(0%); }
-
-/* COUNTDOWN BOX */
-.countdown-box { font-size: 20px; margin-top: 15px; }
+input { padding:12px; border-radius:20px; border:none; margin-top:15px; font-size:18px; width:300px; }
+button { padding:14px 28px; border:none; background:#FFD700; color:black; font-weight:bold; border-radius:25px; margin-top:20px; font-size:18px; }
+.hidden { display:none; }
+/* Falling Sunflowers */
+.sunflower { position: fixed; top:-50px; font-size:36px; animation: fall linear infinite; opacity:0.9; z-index:-1; }
+@keyframes fall { to { transform: translateY(110vh); opacity:0.7; } }
+/* Star Sparkles */
+.sparkle { position: fixed; font-size:18px; color:#FFD700; animation: sparkleAnim 1s ease-out forwards; }
+@keyframes sparkleAnim { from {opacity:1; transform:scale(1);} to {opacity:0; transform:scale(2);} }
+/* Twinkling Stars */
+.star { position: fixed; width:2px; height:2px; background:white; border-radius:50%; opacity:0; animation: twinkle 2s infinite alternate;}
+@keyframes twinkle { from {opacity:0;} to {opacity:1;} }
+/* Countdown Box */
+.countdown-box { font-size:20px; margin-top:15px; }
+/* Secret Message */
+#secretMessage { position: fixed; bottom:0; left:0; right:0; background: rgba(255,215,0,0.9); color:black; font-weight:bold; padding:30px; text-align:center; transform:translateY(100%); transition: transform 0.5s ease; z-index:10; font-size:22px; cursor:pointer; }
+.showMessage { transform:translateY(0%);}
 </style>
 </head>
-
 <body>
 
-<!-- BACKGROUND MUSIC -->
+<!-- Background Music -->
 <audio autoplay loop>
-  <source src="YOUR_HOSTED_KINNA_SONA_MP3_URL_HERE" type="audio/mpeg">
+<source src="YOUR_HOSTED_KINNA_SONA_MP3_URL_HERE" type="audio/mpeg">
 </audio>
 
-<!-- PASSWORD SCREEN -->
+<!-- Password -->
 <div id="password-screen">
-    <h1>For Ninnu Only 💛</h1>
-    <p>Hint: Where I protected my most valuable belonging</p>
-    <input type="password" id="passwordInput" placeholder="Enter password">
-    <button onclick="checkPassword()">Unlock</button>
+<h1>For Ninnu Only 💛</h1>
+<p>Hint: Where I first met you</p>
+<input type="password" id="passwordInput" placeholder="Enter password">
+<button onclick="checkPassword()">Unlock</button>
 </div>
 
-<!-- COUNTDOWN SCREEN -->
+<!-- Countdown Screen -->
 <div id="countdown-screen" class="hidden">
-    <h1>Preparing Something Special...</h1>
-    <h1 id="countdown">5</h1>
+<h1>Preparing Something Special...</h1>
+<h1 id="countdown">5</h1>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- Main Content -->
 <div id="main-content" class="hidden">
 
 <div class="section">
-    <h1>Niharika ✨</h1>
-    <p>8 Months Under The Same Sky 🌌</p>
+<h1>Niharika ✨</h1>
+<p>8 months together, each moment unforgettable 🌌</p>
 </div>
 
 <div class="section">
-    <h2>Our Journey 🌻</h2>
-    <p><b>Rishikesh</b> — Where it began.</p>
-    <p><b>Nainital</b> — Lake reflections & long talks.</p>
-    <p><b>Agra</b> — Even the Taj couldn’t compete.</p>
-    <p><b>McLeodGanj, Dharamshala, Bir</b> — Mountains witnessed us.</p>
-    <p><b>Lollapalooza Mumbai</b> — Music + you = perfect chaos.</p>
+<h2>Our Trips & Memories 🌻</h2>
+<p><b>Rishikesh:</b> Our first trip. The river, the views, the feeling of starting something magical together.</p>
+<p><b>Nainital:</b> Long weekends filled with lake reflections and deep conversations, wrapped in warmth.</p>
+<p><b>Agra:</b> Taj Mahal couldn’t compete with your smile. Playful moments, laughter echoing around.</p>
+<p><b>McLeodGanj / Dharamshala / Bir:</b> Mountains, adventure, quiet moments – every place witnessed our love.</p>
+<p><b>Lollapalooza Mumbai:</b> Music festival chaos, dancing, singing, and just being lost together in the crowd.</p>
 </div>
 
 <div class="section">
-    <h2>The Little Moments 💛</h2>
-    <p>Andhra Bhawan — I secured my most valuable belonging.</p>
-    <p>4 AM car conversations — Safe silence.</p>
-    <p>Bowling battles — You lose but still glow.</p>
-    <p>Badminton nights — Rematch pending.</p>
-    <p>Long drive + Kinna Sona — That was the moment.</p>
+<h2>Little Moments 💛</h2>
+<p>Andhra Bhawan Dinner – I grabbed you as “Take care of your belongings” watched us, and the song “Kinna Sona” played in the car.</p>
+<p>4 AM car conversations – safe silence, whispers of our dreams.</p>
+<p>Bowling nights – you always lose against me, but you shine anyway.</p>
+<p>Badminton evenings – our playful rematch pending.</p>
+<p>Long drive + Kinna Sona — that was the moment.</p>
 </div>
 
 <div class="section">
-    <h2>Countdown To Our Next Trip 📅</h2>
-    <div class="countdown-box" id="tripCountdown"></div>
+<h2>Countdown To Next Trip 📅</h2>
+<div class="countdown-box" id="tripCountdown"></div>
 </div>
 
 <div class="section">
-    <h2>Final Truth ✨</h2>
-    <p id="typing"></p>
+<h2>Final Words ✨</h2>
+<p id="typing"></p>
 </div>
 
 </div>
 
-<!-- SECRET MESSAGE -->
+<!-- Secret Message -->
 <div id="secretMessage" title="Click to reveal secret message">
-You are the best thing that has ever happened to me and I really really love you a lot. 💛
+🎁 You are the best thing that has ever happened to me and I really really love you a lot. 💛
 </div>
 
 <script>
-
-/* NEXT TRIP DATE */
+// Next trip date
 const nextTripDate = new Date("2026-05-15 00:00:00").getTime();
 
-/* PASSWORD */
+// Password check
 function checkPassword(){
     let pass = document.getElementById("passwordInput").value.trim().toLowerCase();
-    if(pass === "andhra bhawan"){ // fixed password check
+    if(pass==="diablo"){
         document.getElementById("password-screen").classList.add("hidden");
         startCountdown();
-    } else {
-        alert("Try again Ninnu 💛");
-    }
+    } else { alert("Try again Ninnu 💛"); }
 }
 
-/* COUNTDOWN INTRO */
+// Countdown
 function startCountdown(){
     document.getElementById("countdown-screen").classList.remove("hidden");
     let count=5;
     let interval=setInterval(()=>{
         count--;
         document.getElementById("countdown").innerText=count;
-        if(count==0){
+        if(count===0){
             clearInterval(interval);
             document.getElementById("countdown-screen").classList.add("hidden");
             document.getElementById("main-content").classList.remove("hidden");
             typeEffect();
             startTripCountdown();
             createSunflowers();
-            createTwinklingStars(150); // more stars for desktop
+            createTwinklingStars(150);
         }
     },1000);
 }
 
-/* TYPING EFFECT */
+// Typing effect
 function typeEffect(){
     let text="Ninnu, under every sky and across every city… you became my favorite place. I choose you. Always.";
     let i=0;
-    function typing(){
-        if(i<text.length){
-            document.getElementById("typing").innerHTML+=text.charAt(i);
-            i++;
-            setTimeout(typing,40);
-        }
-    }
+    function typing(){ if(i<text.length){ document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(typing,40);} }
     typing();
 }
 
-/* LIVE TRIP COUNTDOWN */
+// Trip countdown
 function startTripCountdown(){
-    setInterval(function(){
+    setInterval(()=>{
         let now = new Date().getTime();
         let distance = nextTripDate - now;
-        let days = Math.floor(distance / (1000*60*60*24));
-        let hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
-        let minutes = Math.floor((distance % (1000*60*60))/(1000*60));
-        let seconds = Math.floor((distance % (1000*60))/1000);
-        document.getElementById("tripCountdown").innerHTML =
-        days + " days " + hours + " hrs " + minutes + " min " + seconds + " sec";
+        let days = Math.floor(distance/(1000*60*60*24));
+        let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+        let minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+        let seconds = Math.floor((distance%(1000*60))/1000);
+        document.getElementById("tripCountdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
     },1000);
 }
 
-/* FALLING SUNFLOWERS */
+// Falling sunflowers
 function createSunflowers(){
     setInterval(()=>{
         let flower=document.createElement("div");
@@ -253,20 +173,20 @@ function createSunflowers(){
     },1000);
 }
 
-/* TAP FOR STAR SPARKLES */
+// Star sparkles
 document.addEventListener("click",(e)=>{
     for(let i=0;i<8;i++){
         let star=document.createElement("div");
         star.classList.add("sparkle");
         star.innerHTML="✨";
-        star.style.left=(e.clientX + Math.random()*50-25)+"px";
-        star.style.top=(e.clientY + Math.random()*50-25)+"px";
+        star.style.left=(e.clientX+Math.random()*50-25)+"px";
+        star.style.top=(e.clientY+Math.random()*50-25)+"px";
         document.body.appendChild(star);
         setTimeout(()=>star.remove(),1000);
     }
 });
 
-/* CREATE TWINKLING STARS */
+// Twinkling stars
 function createTwinklingStars(count){
     for(let i=0;i<count;i++){
         let star=document.createElement("div");
@@ -278,11 +198,10 @@ function createTwinklingStars(count){
     }
 }
 
-/* CLICK TO REVEAL SECRET MESSAGE */
+// Secret message reveal
 document.getElementById("secretMessage").addEventListener("click",()=>{
     document.getElementById("secretMessage").classList.add("showMessage");
 });
-
 </script>
 </body>
 </html>
