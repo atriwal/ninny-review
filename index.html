@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidential - Ninnu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: #0c0c0c;
+    color: #f5f5f5;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+h1,h2 {
+    font-family: 'Playfair Display', serif;
+    color: gold;
+}
+
+.section {
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.gold-btn {
+    padding: 12px 28px;
+    border: 1px solid gold;
+    color: gold;
+    background: transparent;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.gold-btn:hover {
+    background: gold;
+    color: black;
+}
+
+/* PASSWORD SCREEN */
+#password-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: black;
+}
+
+input {
+    padding: 10px;
+    margin-top: 15px;
+    background: #111;
+    border: 1px solid gold;
+    color: white;
+}
+
+/* COUNTDOWN */
+#countdown-screen {
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: black;
+}
+
+#countdown {
+    font-size: 80px;
+    color: gold;
+}
+
+/* PROGRESS */
+.progress-bar {
+    background: #222;
+    height: 20px;
+    border-radius: 20px;
+    margin: 15px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: gold;
+    border-radius: 20px;
+    text-align: right;
+    padding-right: 10px;
+    color: black;
+    font-size: 12px;
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: gold;
+    top: -10px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* HEART RAIN */
+.heart {
+    position: fixed;
+    color: red;
+    font-size: 20px;
+    animation: fall 4s linear forwards;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="password-screen">
+    <h1>Confidential Access</h1>
+    <p>Hint: Where I had to protect my belongings 😉</p>
+    <input type="password" id="passwordInput" placeholder="Enter Password">
+    <button class="gold-btn" onclick="checkPassword()">Enter</button>
+</div>
+
+<!-- COUNTDOWN -->
+<div id="countdown-screen">
+    <h1>Preparing Your 8 Month Review...</h1>
+    <div id="countdown">5</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main-content" class="hidden">
+
+<div class="section">
+    <h1>CONFIDENTIAL REPORT</h1>
+    <h2>Subject: Niharika (Ninnu)</h2>
+    <p>The Most Successful Investment of My Life</p>
+</div>
+
+<div class="section">
+    <h2>Executive Summary</h2>
+    <p>
+    After 8 months of emotional growth, long drives, mountains, music,
+    and 4 AM car conversations — the results are clear.
+    </p>
+    <p>
+    You are not temporary.
+    You are home.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Travel Timeline</h2>
+    <p><b>Rishikesh</b> – Our first trip. Where everything felt real.</p>
+    <p><b>Nainital</b> – Long weekend escapes and lakeside peace.</p>
+    <p><b>Agra</b> – Even the Taj Mahal had competition that day.</p>
+    <p><b>McLeodGanj, Dharamshala, Bir Billing</b> – Mountains saw us fall deeper.</p>
+    <p><b>Lollapalooza Mumbai</b> – Music, lights, and us in the crowd.</p>
+</div>
+
+<div class="section">
+    <h2>Core Memories</h2>
+    <p>Andhra Bhawan — “Take care of your belongings.” So I held you closer.</p>
+    <p>Long drive + Kinna Sona — That’s when I knew.</p>
+    <p>4 AM car talks — Where feelings became real.</p>
+    <p>Bowling — You lose. I win. But I still let you think you're improving.</p>
+    <p>Badminton nights — Increasing competition levels detected.</p>
+</div>
+
+<div class="section">
+    <h2>Performance Metrics</h2>
+    <div class="progress-bar"><div class="progress-fill" style="width:100%">Emotional Impact 100%</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:100%">Miss You Rate 1000%</div></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:100%">Future Potential: Unlimited</div></div>
+</div>
+
+<div class="section">
+    <h2>Final Verdict</h2>
+    <p id="typing"></p>
+    <button class="gold-btn" onclick="launchConfetti()">Seal It</button>
+</div>
+
+</div>
+
+<script>
+
+/* PASSWORD */
+function checkPassword(){
+    let pass = document.getElementById("passwordInput").value.toLowerCase();
+    if(pass === "andhra bhawan"){
+        document.getElementById("password-screen").style.display="none";
+        startCountdown();
+    } else {
+        alert("Incorrect. Try again Ninnu 😉");
+    }
+}
+
+/* COUNTDOWN */
+function startCountdown(){
+    document.getElementById("countdown-screen").style.display="flex";
+    let count=5;
+    let interval=setInterval(()=>{
+        count--;
+        document.getElementById("countdown").innerText=count;
+        if(count==0){
+            clearInterval(interval);
+            document.getElementById("countdown-screen").style.display="none";
+            document.getElementById("main-content").classList.remove("hidden");
+            typeEffect();
+        }
+    },1000);
+}
+
+/* TYPING EFFECT */
+function typeEffect(){
+    let text="Somewhere between Rishikesh, 4 AM conversations, and that long drive... you became my peace. I choose you. Every single day.";
+    let i=0;
+    function typing(){
+        if(i<text.length){
+            document.getElementById("typing").innerHTML+=text.charAt(i);
+            i++;
+            setTimeout(typing,40);
+        }
+    }
+    typing();
+}
+
+/* CONFETTI */
+function launchConfetti(){
+    for(let i=0;i<100;i++){
+        let conf=document.createElement("div");
+        conf.classList.add("confetti");
+        conf.style.left=Math.random()*100+"vw";
+        document.body.appendChild(conf);
+        setTimeout(()=>conf.remove(),3000);
+    }
+}
+
+/* HEART EASTER EGG */
+let typed="";
+document.addEventListener("keydown",(e)=>{
+    typed+=e.key.toLowerCase();
+    if(typed.includes("ninnu")){
+        for(let i=0;i<30;i++){
+            let heart=document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML="❤️";
+            heart.style.left=Math.random()*100+"vw";
+            document.body.appendChild(heart);
+            setTimeout(()=>heart.remove(),4000);
+        }
+        typed="";
+    }
+});
+
+</script>
+
+</body>
+</html>
