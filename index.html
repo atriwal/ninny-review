@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ninnu ✨</title>
+<title>Ninnu Desktop ✨</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -14,7 +14,7 @@ body {
     color: white;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    cursor: pointer; /* normal hand cursor */
+    cursor: pointer; /* normal pointer for desktop */
 }
 
 /* STAR SKY BACKGROUND */
@@ -50,20 +50,25 @@ body::before {
     to { transform: translateY(-1000px); }
 }
 
-.section { padding: 60px 20px; text-align: center; }
+.section { 
+    padding: 100px 80px; /* more spacing for desktop */
+    text-align: center; 
+    max-width: 1000px;
+    margin: auto;
+}
 h1,h2 { font-family: 'Playfair Display', serif; color: #FFD700; }
 
 /* PASSWORD + COUNTDOWN */
 #password-screen, #countdown-screen { height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; }
-input { padding: 10px; border-radius: 20px; border: none; margin-top: 15px; }
-button { padding: 12px 24px; border: none; background: #FFD700; color: black; font-weight: bold; border-radius: 25px; margin-top: 20px; }
+input { padding: 12px; border-radius: 20px; border: none; margin-top: 15px; font-size: 18px; width: 300px; }
+button { padding: 14px 28px; border: none; background: #FFD700; color: black; font-weight: bold; border-radius: 25px; margin-top: 20px; font-size: 18px; }
 .hidden { display: none; }
 
 /* FALLING SUNFLOWERS */
 .sunflower {
     position: fixed;
     top: -50px;
-    font-size: 28px;
+    font-size: 36px; /* bigger on desktop */
     animation: fall linear infinite;
     opacity: 0.9;
     z-index: -1;
@@ -75,7 +80,7 @@ button { padding: 12px 24px; border: none; background: #FFD700; color: black; fo
 /* STAR SPARKLE */
 .sparkle {
     position: fixed;
-    font-size: 14px;
+    font-size: 18px;
     color: #FFD700;
     animation: sparkleAnim 1s ease-out forwards;
 }
@@ -84,7 +89,7 @@ button { padding: 12px 24px; border: none; background: #FFD700; color: black; fo
     to { opacity: 0; transform: scale(2); }
 }
 
-/* SECRET MESSAGE SWIPE */
+/* SECRET MESSAGE SWIPE (desktop: click to reveal) */
 #secretMessage {
     position: fixed;
     bottom: 0;
@@ -93,17 +98,18 @@ button { padding: 12px 24px; border: none; background: #FFD700; color: black; fo
     background: rgba(255, 215, 0, 0.9);
     color: black;
     font-weight: bold;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     transform: translateY(100%);
     transition: transform 0.5s ease;
     z-index: 10;
-    font-size: 18px;
+    font-size: 22px;
+    cursor: pointer;
 }
 .showMessage { transform: translateY(0%); }
 
 /* COUNTDOWN BOX */
-.countdown-box { font-size: 18px; margin-top: 15px; }
+.countdown-box { font-size: 20px; margin-top: 15px; }
 </style>
 </head>
 
@@ -117,7 +123,7 @@ button { padding: 12px 24px; border: none; background: #FFD700; color: black; fo
 <!-- PASSWORD SCREEN -->
 <div id="password-screen">
     <h1>For Ninnu Only 💛</h1>
-    <p>Hint: Where we first met</p>
+    <p>Hint: Where I protected my most valuable belonging</p>
     <input type="password" id="passwordInput" placeholder="Enter password">
     <button onclick="checkPassword()">Unlock</button>
 </div>
@@ -167,7 +173,7 @@ button { padding: 12px 24px; border: none; background: #FFD700; color: black; fo
 </div>
 
 <!-- SECRET MESSAGE -->
-<div id="secretMessage">
+<div id="secretMessage" title="Click to reveal secret message">
 You are the best thing that has ever happened to me and I really really love you a lot. 💛
 </div>
 
@@ -179,12 +185,12 @@ const nextTripDate = new Date("2026-05-15 00:00:00").getTime();
 /* PASSWORD */
 function checkPassword(){
     let pass = document.getElementById("passwordInput").value.trim().toLowerCase();
-if(pass === "diablo"){ // correct password
-    document.getElementById("password-screen").classList.add("hidden");
-    startCountdown();
-} else {
-    alert("Try again Ninnu 💛");
-}
+    if(pass === "andhra bhawan"){ // fixed password check
+        document.getElementById("password-screen").classList.add("hidden");
+        startCountdown();
+    } else {
+        alert("Try again Ninnu 💛");
+    }
 }
 
 /* COUNTDOWN INTRO */
@@ -201,7 +207,7 @@ function startCountdown(){
             typeEffect();
             startTripCountdown();
             createSunflowers();
-            createTwinklingStars(100);
+            createTwinklingStars(150); // more stars for desktop
         }
     },1000);
 }
@@ -241,10 +247,10 @@ function createSunflowers(){
         flower.classList.add("sunflower");
         flower.innerHTML="🌻";
         flower.style.left=Math.random()*100+"vw";
-        flower.style.animationDuration=(4+Math.random()*6)+"s";
+        flower.style.animationDuration=(5+Math.random()*7)+"s";
         document.body.appendChild(flower);
-        setTimeout(()=>flower.remove(),10000);
-    },900);
+        setTimeout(()=>flower.remove(),12000);
+    },1000);
 }
 
 /* TAP FOR STAR SPARKLES */
@@ -253,8 +259,8 @@ document.addEventListener("click",(e)=>{
         let star=document.createElement("div");
         star.classList.add("sparkle");
         star.innerHTML="✨";
-        star.style.left=(e.clientX + Math.random()*40-20)+"px";
-        star.style.top=(e.clientY + Math.random()*40-20)+"px";
+        star.style.left=(e.clientX + Math.random()*50-25)+"px";
+        star.style.top=(e.clientY + Math.random()*50-25)+"px";
         document.body.appendChild(star);
         setTimeout(()=>star.remove(),1000);
     }
@@ -272,15 +278,9 @@ function createTwinklingStars(count){
     }
 }
 
-/* SWIPE TO REVEAL SECRET MESSAGE */
-let touchStartY=0;
-let touchEndY=0;
-document.addEventListener("touchstart", e => { touchStartY = e.changedTouches[0].screenY; });
-document.addEventListener("touchend", e => {
-    touchEndY = e.changedTouches[0].screenY;
-    if(touchStartY - touchEndY > 50){ // swipe up
-        document.getElementById("secretMessage").classList.add("showMessage");
-    }
+/* CLICK TO REVEAL SECRET MESSAGE */
+document.getElementById("secretMessage").addEventListener("click",()=>{
+    document.getElementById("secretMessage").classList.add("showMessage");
 });
 
 </script>
